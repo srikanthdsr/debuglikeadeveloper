@@ -10,7 +10,14 @@
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid #ddd; padding: 8px; }
     th { background-color: #f2f2f2; text-align: left; }
+    .utf16 {
+        /* background: #f6f8fa; */
+        cursor: pointer;
+        user-select: all;
+        font-family: monospace;
+    }
   </style>
+
 </head>
 <body>
 
@@ -24,13 +31,13 @@
 <p>Just copy and paste the emoji character or its UTF-16 encoding directly into your <code>System.debug()</code> message.</p>
 
 <h3>✅ Valid:</h3>
-<pre><code>System.debug('📦 Inserted 200 records successfully!'); // 📦 Inserted 200 records successfully!
-System.debug('\uD83E\uDDE0 Brain mode ON');             // 🧠 Brain mode ON
-</code></pre>
+<pre>
+System.debug('📦 Inserted 200 records successfully!'); // 📦 Inserted 200 records successfully!
+System.debug('\uD83E\uDDE0 Brain mode ON');             // 🧠 Brain mode ON</pre>
 
 <h3>❌ Invalid:</h3>
-<pre><code>System.debug(U+1F4E6); // will <strong>compile</strong>, but it will not print the emoji—it will print the string "U+1F4E6" instead.
-</code></pre>
+<pre>System.debug(U+1F4E6); // will <strong>compile</strong>, but it will not print the emoji—it will print the string "U+1F4E6" instead.
+</pre>
 
 <h2>🔢 Emoji Reference Table</h2>
 <p>Salesforce Apex supports emojis using two approaches:</p>
@@ -40,7 +47,7 @@ System.debug('\uD83E\uDDE0 Brain mode ON');             // 🧠 Brain mode ON
 </ol>
 <p>Use whichever you prefer—both approaches are valid and safe for logging, notifications, or visual flair in Apex!</p>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Emoji</th>
@@ -52,28 +59,204 @@ System.debug('\uD83E\uDDE0 Brain mode ON');             // 🧠 Brain mode ON
     </tr>
   </thead>
   <tbody>
-    <tr><td>🧠</td><td>U+1F9E0</td><td>\uD83E\uDDE0</td><td>Brain</td><td>Brain says bulky, heart says just loop it once more...</td><td><code>System.debug('\uD83E\uDDE0 Brain mode ON');</code></td></tr>
-    <tr><td>🚨</td><td>U+1F6A8</td><td>\uD83D\uDEA8</td><td>Police Car Light</td><td>Trigger recursion alert! Someone forgot their static flag.</td><td><code>System.debug('🚨 Recursion alert triggered!');</code></td></tr>
-    <tr><td>🕵️</td><td>U+1F575</td><td>\uD83D\uDD75</td><td>Detective</td><td>Tracing DML flow... suspect spotted in line 42.</td><td><code>System.debug('🕵️ Tracing DML...');</code></td></tr>
-    <tr><td>📦</td><td>U+1F4E6</td><td>\uD83D\uDCE6</td><td>Package</td><td>Inserted 200 records successfully. Mission accomplished 🎯</td><td><code>System.debug('📦 200 records inserted.');</code></td></tr>
-    <tr><td>🛫</td><td>U+1F6EB</td><td>\uD83D\uDEEB</td><td>Airplane Departure</td><td>Batch job starting... keep your hands inside the log!</td><td><code>System.debug('🛫 Batch started...');</code></td></tr>
-    <tr><td>🌪️</td><td>U+1F32A</td><td>\uD83C\uDF2A</td><td>Tornado</td><td>Flow triggered unexpectedly. Did someone sneeze on the record?</td><td><code>System.debug('🌪️ Unexpected flow triggered.');</code></td></tr>
-    <tr><td>🛡️</td><td>U+1F6E1</td><td>\uD83D\uDEE1</td><td>Shield</td><td>Incoming data from external system... prepare the shields!</td><td><code>System.debug('🛡️ External call incoming...');</code></td></tr>
-    <tr><td>📉</td><td>U+1F4C9</td><td>\uD83D\uDCC9</td><td>Chart Decreasing</td><td>CPU time is dropping... oh wait, it’s spiking again 💥</td><td><code>System.debug('📉 CPU usage spike detected!');</code></td></tr>
-    <tr><td>🧐</td><td>U+1F9D0</td><td>\uD83E\uDDD0</td><td>Monocle Face</td><td>Validation errors found. Time to stare into the void 🌀</td><td><code>System.debug('🧐 Validation failed.');</code></td></tr>
-    <tr><td>🤯</td><td>U+1F92F</td><td>\uD83E\uDD2F</td><td>Exploding Head</td><td>SOQL inside a loop? That’s a developer crime 🧊☠️</td><td><code>System.debug('🤯 SOQL inside loop detected!');</code></td></tr>
-    <tr><td>💡</td><td>U+1F4A1</td><td>\uD83D\uDCA1</td><td>Light Bulb</td><td>Eureka! Null pointer was hiding behind an IF statement.</td><td><code>System.debug('💡 Gotcha! Null pointer caught.');</code></td></tr>
-    <tr><td>📡</td><td>U+1F4E1</td><td>\uD83D\uDCE1</td><td>Satellite Antenna</td><td>Making callout... hope the internet gods are kind today.</td><td><code>System.debug('📡 Sending callout...');</code></td></tr>
-    <tr><td>🎭</td><td>U+1F3AD</td><td>\uD83C\uDFAD</td><td>Performing Arts (for exceptions)</td><td>Unhandled exception: Reality not matching expectations.</td><td><code>System.debug('🎭 Caught unexpected exception.');</code></td></tr>
-    <tr><td>🙏</td><td>U+1F64F</td><td>\uD83D\uDE4F</td><td>Folded Hands</td><td>Async job enqueued... now we wait and pray.</td><td><code>System.debug('🙏 Job enqueued. Fingers crossed.');</code></td></tr>
-    <tr><td>🧩</td><td>U+1F9E9</td><td>\uD83E\uDDE9</td><td>Puzzle Piece</td><td>Field mapping complete. Everything fits... for now.</td><td><code>System.debug('🧩 Field mapping done.');</code></td></tr>
-    <tr><td>🧹</td><td>U+1F9F9</td><td>\uD83E\uDDF9</td><td>Broom</td><td>Clearing debug logs... let’s tidy up!</td><td><code>System.debug('🧹 Log cleanup complete.');</code></td></tr>
-    <tr><td>📛</td><td>U+1F4DB</td><td>\uD83D\uDCDB</td><td>Name Badge</td><td>Required field missing! Who forgot to fill the name?</td><td><code>System.debug('📛 Missing required field!');</code></td></tr>
-    <tr><td>⏳</td><td>U+23F3</td><td>\u23F3</td><td>Hourglass</td><td>Waiting on async response... tick tock.</td><td><code>System.debug('⏳ Waiting on response...');</code></td></tr>
-    <tr><td>🗃️</td><td>U+1F5C3</td><td>\uD83D\uDDC3</td><td>Card File Box</td><td>Retrieved 500 records from SOQL — paging enabled.</td><td><code>System.debug('🗃️ Fetched 500 records.');</code></td></tr>
-    <tr><td>🧊</td><td>U+1F9CA</td><td>\uD83E\uDDCA</td><td>Ice</td><td>Cool logic block detected. Safe and optimized.</td><td><code>System.debug('🧊 Smooth execution block.');</code></td></tr>
+    <tr><td>🧠</td><td>U+1F9E0</td><td>\uD83E\uDDE0</td><td>Brain</td><td>Brain says bulky, heart says just loop it once more...</td><td class="utf16"><code>System.debug('\uD83E\uDDE0 Brain mode ON');</code></td></tr>
+    <tr><td>🚨</td><td>U+1F6A8</td><td>\uD83D\uDEA8</td><td>Police Car Light</td><td>Trigger recursion alert! Someone forgot their static flag.</td><td class="utf16"><code>System.debug('🚨 Recursion alert triggered!');</code></td></tr>
+    <tr><td>🕵️</td><td>U+1F575</td><td>\uD83D\uDD75</td><td>Detective</td><td>Tracing DML flow... suspect spotted in line 42.</td><td class="utf16"><code>System.debug('🕵️ Tracing DML...');</code></td></tr>
+    <tr><td>📦</td><td>U+1F4E6</td><td>\uD83D\uDCE6</td><td>Package</td><td>Inserted 200 records successfully. Mission accomplished 🎯</td><td class="utf16"><code>System.debug('📦 200 records inserted.');</code></td></tr>
+    <tr><td>🛫</td><td>U+1F6EB</td><td>\uD83D\uDEEB</td><td>Airplane Departure</td><td>Batch job starting... keep your hands inside the log!</td><td class="utf16"><code>System.debug('🛫 Batch started...');</code></td></tr>
+    <tr><td>🌪️</td><td>U+1F32A</td><td>\uD83C\uDF2A</td><td>Tornado</td><td>Flow triggered unexpectedly. Did someone sneeze on the record?</td><td class="utf16"><code>System.debug('🌪️ Unexpected flow triggered.');</code></td></tr>
+    <tr><td>🛡️</td><td>U+1F6E1</td><td>\uD83D\uDEE1</td><td>Shield</td><td>Incoming data from external system... prepare the shields!</td><td class="utf16"><code>System.debug('🛡️ External call incoming...');</code></td></tr>
+    <tr><td>📉</td><td>U+1F4C9</td><td>\uD83D\uDCC9</td><td>Chart Decreasing</td><td>CPU time is dropping... oh wait, it’s spiking again 💥</td><td class="utf16"><code>System.debug('📉 CPU usage spike detected!');</code></td></tr>
+    <tr><td>🧐</td><td>U+1F9D0</td><td>\uD83E\uDDD0</td><td>Monocle Face</td><td>Validation errors found. Time to stare into the void 🌀</td><td class="utf16"><code>System.debug('🧐 Validation failed.');</code></td></tr>
+    <tr><td>🤯</td><td>U+1F92F</td><td>\uD83E\uDD2F</td><td>Exploding Head</td><td>SOQL inside a loop? That’s a developer crime 🧊☠️</td><td class="utf16"><code>System.debug('🤯 SOQL inside loop detected!');</code></td></tr>
+    <tr><td>💡</td><td>U+1F4A1</td><td>\uD83D\uDCA1</td><td>Light Bulb</td><td>Eureka! Null pointer was hiding behind an IF statement.</td><td class="utf16"><code>System.debug('💡 Gotcha! Null pointer caught.');</code></td></tr>
+    <tr><td>📡</td><td>U+1F4E1</td><td>\uD83D\uDCE1</td><td>Satellite Antenna</td><td>Making callout... hope the internet gods are kind today.</td><td class="utf16"><code>System.debug('📡 Sending callout...');</code></td></tr>
+    <tr><td>🎭</td><td>U+1F3AD</td><td>\uD83C\uDFAD</td><td>Performing Arts (for exceptions)</td><td>Unhandled exception: Reality not matching expectations.</td><td class="utf16"><code>System.debug('🎭 Caught unexpected exception.');</code></td></tr>
+    <tr><td>🙏</td><td>U+1F64F</td><td>\uD83D\uDE4F</td><td>Folded Hands</td><td>Async job enqueued... now we wait and pray.</td><td class="utf16"><code>System.debug('🙏 Job enqueued. Fingers crossed.');</code></td></tr>
+    <tr><td>🧩</td><td>U+1F9E9</td><td>\uD83E\uDDE9</td><td>Puzzle Piece</td><td>Field mapping complete. Everything fits... for now.</td><td class="utf16"><code>System.debug('🧩 Field mapping done.');</code></td></tr>
+    <tr><td>🧹</td><td>U+1F9F9</td><td>\uD83E\uDDF9</td><td>Broom</td><td>Clearing debug logs... let’s tidy up!</td><td class="utf16"><code>System.debug('🧹 Log cleanup complete.');</code></td></tr>
+    <tr><td>📛</td><td>U+1F4DB</td><td>\uD83D\uDCDB</td><td>Name Badge</td><td>Required field missing! Who forgot to fill the name?</td><td class="utf16"><code>System.debug('📛 Missing required field!');</code></td></tr>
+    <tr><td>⏳</td><td>U+23F3</td><td>\u23F3</td><td>Hourglass</td><td>Waiting on async response... tick tock.</td><td class="utf16"><code>System.debug('⏳ Waiting on response...');</code></td></tr>
+    <tr><td>🗃️</td><td>U+1F5C3</td><td>\uD83D\uDDC3</td><td>Card File Box</td><td>Retrieved 500 records from SOQL — paging enabled.</td><td class="utf16"><code>System.debug('🗃️ Fetched 500 records.');</code></td></tr>
+    <tr><td>🧊</td><td>U+1F9CA</td><td>\uD83E\uDDCA</td><td>Ice</td><td>Cool logic block detected. Safe and optimized.</td><td class="utf16"><code>System.debug('🧊 Smooth execution block.');</code></td></tr>
   </tbody>
-</table>
+</table> -->
+
+<table>
+    <thead>
+      <tr>
+        <th>Emoji</th>
+        <th>Unicode</th>
+        <th>UTF-16</th>
+        <th>Description</th>
+        <th>Sample Usage</th>
+        <th>Working Apex Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🧠</td>
+        <td>U+1F9E0</td>
+        <td class="utf16"><code>\uD83E\uDDE0</code></td>
+        <td>Brain</td>
+        <td>Brain says bulky, heart says just loop it once more...</td>
+        <td class="utf16"><code>System.debug('\uD83E\uDDE0 Brain mode ON');</code></td>
+      </tr>
+      <tr>
+        <td>🚨</td>
+        <td>U+1F6A8</td>
+        <td class="utf16"><code>\uD83D\uDEA8</code></td>
+        <td>Police Car Light</td>
+        <td>Trigger recursion alert!</td>
+        <td class="utf16"><code>System.debug('🚨 Recursion alert triggered!');</code></td>
+      </tr>
+      <tr>
+        <td>🕵️</td>
+        <td>U+1F575</td>
+        <td class="utf16"><code>\uD83D\uDD75</code></td>
+        <td>Detective</td>
+        <td>Tracing DML flow... suspect spotted in line 42.</td>
+        <td class="utf16"><code>System.debug('🕵️ Tracing DML...');</code></td>
+      </tr>
+      <tr>
+        <td>📦</td>
+        <td>U+1F4E6</td>
+        <td class="utf16"><code>\uD83D\uDCE6</code></td>
+        <td>Package</td>
+        <td>Inserted 200 records successfully. Mission accomplished 🎯</td>
+        <td class="utf16"><code>System.debug('📦 200 records inserted.');</code></td>
+      </tr>
+      <tr>
+        <td>🛫</td>
+        <td>U+1F6EB</td>
+        <td class="utf16"><code>\uD83D\uDEEB</code></td>
+        <td>Airplane Departure</td>
+        <td>Batch job starting... keep your hands inside the log!</td>
+        <td class="utf16"><code>System.debug('🛫 Batch started...');</code></td>
+      </tr>
+      <tr>
+        <td>🌪️</td>
+        <td>U+1F32A</td>
+        <td class="utf16"><code>\uD83C\uDF2A</code></td>
+        <td>Tornado</td>
+        <td>Flow triggered unexpectedly. Did someone sneeze on the record?</td>
+        <td class="utf16"><code>System.debug('🌪️ Unexpected flow triggered.');</code></td>
+      </tr>
+      <tr>
+        <td>🛡️</td>
+        <td>U+1F6E1</td>
+        <td class="utf16"><code>\uD83D\uDEE1</code></td>
+        <td>Shield</td>
+        <td>Incoming data from external system... prepare the shields!</td>
+        <td class="utf16"><code>System.debug('🛡️ External call incoming...');</code></td>
+      </tr>
+      <tr>
+        <td>📉</td>
+        <td>U+1F4C9</td>
+        <td class="utf16"><code>\uD83D\uDCC9</code></td>
+        <td>Chart Decreasing</td>
+        <td>CPU time is dropping... oh wait, it’s spiking again 💥</td>
+        <td class="utf16"><code>System.debug('📉 CPU usage spike detected!');</code></td>
+      </tr>
+      <tr>
+        <td>🧐</td>
+        <td>U+1F9D0</td>
+        <td class="utf16"><code>\uD83E\uDDD0</code></td>
+        <td>Monocle Face</td>
+        <td>Validation errors found. Time to stare into the void 🌀</td>
+        <td class="utf16"><code>System.debug('🧐 Validation failed.');</code></td>
+      </tr>
+      <tr>
+        <td>🤯</td>
+        <td>U+1F92F</td>
+        <td class="utf16"><code>\uD83E\uDD2F</code></td>
+        <td>Exploding Head</td>
+        <td>SOQL inside a loop? That’s a developer crime 🧊☠️</td>
+        <td class="utf16"><code>System.debug('🤯 SOQL inside loop detected!');</code></td>
+      </tr>
+      <tr>
+        <td>💡</td>
+        <td>U+1F4A1</td>
+        <td class="utf16"><code>\uD83D\uDCA1</code></td>
+        <td>Light Bulb</td>
+        <td>Eureka! Null pointer was hiding behind an IF statement.</td>
+        <td class="utf16"><code>System.debug('💡 Gotcha! Null pointer caught.');</code></td>
+      </tr>
+      <tr>
+        <td>📡</td>
+        <td>U+1F4E1</td>
+        <td class="utf16"><code>\uD83D\uDCE1</code></td>
+        <td>Satellite Antenna</td>
+        <td>Making callout... hope the internet gods are kind today.</td>
+        <td class="utf16"><code>System.debug('📡 Sending callout...');</code></td>
+      </tr>
+      <tr>
+        <td>🎭</td>
+        <td>U+1F3AD</td>
+        <td class="utf16"><code>\uD83C\uDFAD</code></td>
+        <td>Performing Arts</td>
+        <td>Unhandled exception: Reality not matching expectations.</td>
+        <td class="utf16"><code>System.debug('🎭 Caught unexpected exception.');</code></td>
+      </tr>
+      <tr>
+        <td>🙏</td>
+        <td>U+1F64F</td>
+        <td class="utf16"><code>\uD83D\uDE4F</code></td>
+        <td>Folded Hands</td>
+        <td>Async job enqueued... now we wait and pray.</td>
+        <td class="utf16"><code>System.debug('🙏 Job enqueued. Fingers crossed.');</code></td>
+      </tr>
+      <tr>
+        <td>🧩</td>
+        <td>U+1F9E9</td>
+        <td class="utf16"><code>\uD83E\uDDE9</code></td>
+        <td>Puzzle Piece</td>
+        <td>Field mapping complete. Everything fits... for now.</td>
+        <td class="utf16"><code>System.debug('🧩 Field mapping done.');</code></td>
+      </tr>
+      <tr>
+        <td>🧹</td>
+        <td>U+1F9F9</td>
+        <td class="utf16"><code>\uD83E\uDDF9</code></td>
+        <td>Broom</td>
+        <td>Clearing debug logs... let’s tidy up!</td>
+        <td class="utf16"><code>System.debug('🧹 Log cleanup complete.');</code></td>
+      </tr>
+      <tr>
+        <td>📛</td>
+        <td>U+1F4DB</td>
+        <td class="utf16"><code>\uD83D\uDCDB</code></td>
+        <td>Name Badge</td>
+        <td>Required field missing! Who forgot to fill the name?</td>
+        <td class="utf16"><code>System.debug('📛 Missing required field!');</code></td>
+      </tr>
+      <tr>
+        <td>⏳</td>
+        <td>U+23F3</td>
+        <td class="utf16"><code>\u23F3</code></td>
+        <td>Hourglass</td>
+        <td>Waiting on async response... tick tock.</td>
+        <td class="utf16"><code>System.debug('⏳ Waiting on response...');</code></td>
+      </tr>
+      <tr>
+        <td>🗃️</td>
+        <td>U+1F5C3</td>
+        <td class="utf16"><code>\uD83D\uDDC3</code></td>
+        <td>Card File Box</td>
+        <td>Retrieved 500 records from SOQL — paging enabled.</td>
+        <td class="utf16"><code>System.debug('🗃️ Fetched 500 records.');</code></td>
+      </tr>
+      <tr>
+        <td>🧊</td>
+        <td>U+1F9CA</td>
+        <td class="utf16"><code>\uD83E\uDDCA</code></td>
+        <td>Ice</td>
+        <td>Cool logic block detected. Safe and optimized.</td>
+        <td class="utf16"><code>System.debug('🧊 Smooth execution block.');</code></td>
+      </tr>
+    </tbody>
+  </table>
+  
 
 <h2>🛠 Pro Tips</h2>
 <ul>
@@ -89,4 +272,3 @@ System.debug('\uD83E\uDDE0 Brain mode ON');             // 🧠 Brain mode ON
 
 </body>
 </html>
-
