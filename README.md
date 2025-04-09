@@ -53,7 +53,7 @@ System.debug(U+1F4E6); // Won’t compile in Apex
 - Use emojis **sparingly** in production logs — mainly for dev/test logs.
 - Emojis render best in **modern IDEs, Dev Console, and VS Code**.
 - Use them to identify types of logs: error, warning, info, etc.
-- Pair emojis with **custom log prefixes** like [INFO], [ERROR], [DML], etc.
+- Pair emojis with **custom log prefixes** like `[INFO]`, `[ERROR]`, `[DML]`, etc.
 - Use 🔍 or 🔎 for quick log filters in long trace files.
 
 ---
