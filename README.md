@@ -16,8 +16,8 @@ Just copy and paste the emoji character or its UTF-16 encoding directly into you
 
 ✅ Valid:
 ```apex
-System.debug('📦 Inserted 200 records successfully!');
-System.debug('\uD83E\uDDE0 Brain mode ON');
+System.debug('📦 Inserted 200 records successfully!'); // 📦 Inserted 200 records successfully!
+System.debug('\uD83E\uDDE0 Brain mode ON');             // 🧠 Brain mode ON
 ```
 
 ❌ Invalid:
