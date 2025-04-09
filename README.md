@@ -70,7 +70,28 @@ Use whichever you prefer—both approaches are valid and safe for logging, notif
 - Use 🔍 or 🔎 for quick log filters in long trace files.
 
 ---
+## 🧪 Sample Debug Statements
 
+Below are ready-to-use `System.debug()` lines featuring emojis to instantly give your Apex logs more context and character:
+
+```apex
+System.debug('🧠 Brain says bulky, heart says just loop it once more...');
+System.debug('🚨 Trigger recursion alert! Someone forgot their static flag.');
+System.debug('🕵️ Tracing DML flow... suspect spotted in line 42.');
+System.debug('📦 Inserted 200 records successfully. Mission accomplished 🎯');
+System.debug('🛫 Batch job starting... please keep your hands inside the log!');
+System.debug('🌪️ Flow triggered unexpectedly. Did someone sneeze on the record?');
+System.debug('🛡️ Incoming data from external system... prepare the shields!');
+System.debug('📉 CPU time is dropping... oh wait, it’s spiking again 💥');
+System.debug('🧐 Validation errors found. Time to stare into the void 🌀');
+System.debug('🤯 SOQL inside a loop? That’s a developer crime 🧊☠️');
+System.debug('💡 Eureka! The null pointer was hiding behind an IF statement.');
+System.debug('📡 Making callout... hope the internet gods are kind today.');
+System.debug('🎭 Unhandled exception: Reality not matching expectations.');
+System.debug('🙏 Async job enqueued... now we wait and pray.');
+System.debug('🧩 Field mapping complete. Everything fits... for now.');
+```
+---
 ## 📎 License
 
 MIT — use and enjoy!
